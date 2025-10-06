@@ -1,0 +1,28 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: notifier
+  cloud:
+    aws:
+      region:
+        static: us-east-1
+      credentials:
+        access-key: ${AWS_ACCESS_KEY}
+        secret-key: ${AWS_SECRET_KEY}
+      sqs:
+        endpoint: ${SQS_AWS_ENDPOINT}
+      ses:
+        endpoint: ${SQS_AWS_ENDPOINT}
+
+notifier:
+  sqs-queue-name: ${SQS_QUEUE_NAME}
+  ses:
+    from: ${SES_FROM}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
